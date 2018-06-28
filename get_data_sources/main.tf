@@ -15,3 +15,11 @@ output "azs" {
   value = "${data.aws_availability_zones.all.names}"
 }
 
+#
+# Get All available VPCs
+#
+data "aws_vpcs" "vpcs" {}
+
+output "vpcs" {
+  value = "${data.aws_vpcs.vpcs.ids}"
+}

@@ -13,7 +13,7 @@ variable "server_port" {
 
 variable "source_ip" {
   description = "The source IP allowed inbound by the security group"
-  default     = "0.0.0.0/0"
+  default     = "xx.xx.xx.xx/32"
 
 }
 
@@ -43,7 +43,8 @@ resource "aws_security_group" "instance" {
     from_port   = "${var.server_port}"
     to_port     = "${var.server_port}"
     protocol    = "tcp"
-    cidr_blocks = ["${var.source_ip}"]
+#   cidr_blocks = ["${var.source_ip}"]
+    security_groups = ["${aws_security_group.elb.id}"]
   }
 
   ingress {

@@ -23,3 +23,15 @@ data "aws_vpcs" "vpcs" {}
 output "vpcs" {
   value = "${data.aws_vpcs.vpcs.ids}"
 }
+
+#
+# Get EBS Snapshots Information
+#
+data "aws_ebs_snapshot" "ebs_volume" {
+  most_recent = true
+  owners      = ["self"]
+}
+
+output "my_snapshots" {
+  value = "${data.aws_ebs_snapshot.ebs_volume.snapshot_id}"
+}
